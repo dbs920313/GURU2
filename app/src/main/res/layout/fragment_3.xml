@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment3"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Fragment3">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+
+
+        <DatePicker
+            android:headerBackground="#8F8B8B"
+            android:id="@+id/datePicker"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5sp">
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/viewDatePick"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#6B6B6B">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="DIARY"
-                android:textSize="16dp"
-                android:textAlignment="center"
-                android:textColor="#ffffff" />
-        </LinearLayout>
+            android:background="#DDDDDD"
+            android:gravity="center"
+            android:text=""
+            android:textStyle="bold" />
 
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/edtDiary"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="80sp"
+            android:background="#DDDDDD"
+            android:ems="10"
+            android:gravity="start|center_vertical"
+            android:inputType="text|textMultiLine|textCapSentences"
+            android:padding="7sp"
+            android:text="" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:scrollbars="vertical"
-                tools:listitem="@layout/item_diary"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+"
-                    android:textSize="20dp"
-                    android:textColor="#6B6B6B"
-                    android:background="@drawable/round_button"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="새 일기 저장" />
     </LinearLayout>
+</LinearLayout>
 
 
-</FrameLayout>

@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.edit_box.*
 import kotlinx.android.synthetic.main.fragment_1.*
 import kotlinx.android.synthetic.main.todo_item.*
+import kotlinx.android.synthetic.main.todo_item.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,10 +33,12 @@ private const val ARG_PARAM2 = "param2"
  */
 
 
+
 class Fragment1 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
 
     //binding
     private var _binding: Fragment1Binding? = null
@@ -68,7 +72,6 @@ class Fragment1 : Fragment() {
         _binding = Fragment1Binding.inflate(inflater, container, false)
         val view = binding.root
 
-
         data.add(Todo("work"))
         data.add(Todo("hey",true))
 
@@ -79,9 +82,6 @@ class Fragment1 : Fragment() {
             adapter = TodoAdapter(data,
                 onClickDeleteIcon = {
                     deleteTodo(it)
-                },
-                onClickEditIcon = {
-                    editTodo(it)
                 },
                 onClickItem = {
                     toggleTodo(it)
@@ -116,32 +116,8 @@ class Fragment1 : Fragment() {
         binding.recyclerView.adapter?.notifyDataSetChanged()
     }
 
-    private fun editTodo(todo : Todo) {
-
-        if (edit.callOnClick()) {
 
 
-            Todo_list.setVisibility(View.INVISIBLE)
-            edit_text.setVisibility(View.VISIBLE)
-            val temp1: String = todo.toString()
-            edit_text.setText(temp1)
-            edit_text.setText(binding.editText.text.toString())
-
-
-        } else {
-            edit_text.setVisibility(View.INVISIBLE)
-            Todo_list.setVisibility(View.VISIBLE)
-            Todo_list.setText(binding.editText.text.toString())
-
-
-        }
-
-
-
-
-
-
-    }
 
 
     override fun onDestroyView() {
@@ -174,14 +150,13 @@ class Fragment1 : Fragment() {
 }
 
 data class Todo(
-    val text: String,
+    var text: String,
     var isDone: Boolean = false
 )
 
 class TodoAdapter(
     private val myDataset: List<Todo>,
     val onClickDeleteIcon: (todo: Todo) -> Unit,
-    val onClickEditIcon : (todo : Todo) -> Unit,
     val onClickItem: (todo: Todo) -> Unit
 ) :
     RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
@@ -229,10 +204,6 @@ class TodoAdapter(
             onClickDeleteIcon.invoke(todo)
         }
 
-        holder.binding.edit.setOnClickListener{
-            onClickEditIcon.invoke(todo)
-        }
-
         holder.binding.root.setOnClickListener{
             onClickItem.invoke(todo)
         }
@@ -240,6 +211,3 @@ class TodoAdapter(
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = myDataset.size
 }
-
-
-

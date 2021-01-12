@@ -41,7 +41,9 @@
         tools:text="preview"
         android:textColor="#000000"
         tools:ignore="MissingConstraints"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        android:clickable="true"/>
+
 
 
 
